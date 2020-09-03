@@ -135,14 +135,20 @@ export default class ClampLines extends PureComponent {
     return this.watch && !this.state.noClamp ? this.props.ellipsis : '';
   }
 
+getButtonClassName() {
+	let className = this.props.buttonClassName || '';
+	return className;
+}
+
   getButton() {
     if (this.state.noClamp || !this.props.buttons) return;
 
     let buttonText = this.watch ? this.props.moreText : this.props.lessText;
+	let className = `clamp-lines__button ${this.getButtonClassName()}`;
 
     return (
       <button
-        className="clamp-lines__button"
+        className={className}
         onClick={this.clickHandler}
         aria-controls={`clamped-content-${this.uuid}`}
         aria-expanded={!this.state.expanded}
